@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="StockNewsApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Stock Market News</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular-route.min.js"></script>
+    <script src="news.js" defer></script>
+    <link rel="stylesheet" href="news.css">
+</head>
+<body ng-controller="NewsController">
+    <header>
+        <h1>Stock Market News</h1>
+        <a href="Home.html" class="back-button">🏠 Home</a>
+    </header>
+
+    <div class="news-container">
+        <div class="search-bar">
+            <input type="text" ng-model="searchSymbol" placeholder="Enter stock symbol (e.g., AAPL)">
+            <button ng-click="fetchNews()">Search News</button>
+        </div>
+
+        <div class="news-list" ng-if="articles.length > 0">
+            <h2>News for {{ searchSymbol.toUpperCase() }}</h2>
+            <ul>
+                <li class="news-item" ng-repeat="article in articles">
+                    <h3><a href="{{ article.url }}" target="_blank">{{ article.title }}</a></h3>
+                    <small>{{ article.source.name }} - {{ article.publishedAt | date:'medium' }}</small>
+                    <p>{{ article.description }}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="no-results" ng-if="articles.length === 0 && searched">
+            <p>No news found for "{{ searchSymbol }}".</p>
+        </div>
+
+        <div class="loading" ng-if="loading">
+            <p>Loading news...</p>
+        </div>
+
+        <div class="error" ng-if="errorMessage">
+            <p>{{ errorMessage }}</p>
+        </div>
+    </div>
+</body>
+</html>

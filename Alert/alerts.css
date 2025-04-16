@@ -1,0 +1,189 @@
+/* Base styles */
+:root {
+  --primary-color: #fbfbfb;
+  --dark-bg-color: #0d1721;
+  --panel-bg-color: rgba(19, 28, 39, 0.8);
+  --text-color: #e6e6e6;
+  --success-color: #4caf50;
+  --error-color: #f44336;
+  --input-bg-color: rgba(29, 41, 57, 0.8);
+  --hover-color: #00b894;
+  --button-hover: rgba(0, 230, 184, 0.2);
+  --home-button-bg: rgba(0, 230, 184, 0.15);
+  --home-button-hover: rgba(0, 230, 184, 0.3);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--dark-bg-color);
+  color: var(--text-color);
+  background-image: url('Firefly\ Secure\ Stock\ Exchange\ System\ using\ Web\ Services\ graphs\ 80807.jpg'), linear-gradient(135deg, #0d1721 0%, #152233 100%);
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgba(0, 230, 184, 0.2);
+  position: relative;
+  width: 100%;
+}
+
+header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 230, 184, 0.6), transparent);
+  width: 100%;
+}
+
+h1 {
+  color: var(--primary-color);
+  font-size: 2.2rem;
+  font-weight: 500;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+.back-button {
+  background-color: var(--home-button-bg);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-weight: 500;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.back-button:hover {
+  background-color: var(--home-button-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.content-container {
+  max-width: 600px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: var(--panel-bg-color);
+  border-radius: 12px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  margin-bottom: 40px;
+}
+
+/* Form styling */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"] {
+  width: 100%;
+  padding: 14px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--input-bg-color);
+  color: var(--text-color);
+  outline: none;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+input:focus {
+  box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+input::placeholder {
+  color: rgba(230, 230, 230, 0.5);
+}
+
+button {
+  background-color: var(--primary-color);
+  color: #0d1721;
+  border: none;
+  border-radius: 6px;
+  padding: 14px 24px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+button:hover:not([disabled]) {
+  background-color: var(--hover-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Message styling */
+#message {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.success {
+  background-color: rgba(76, 175, 80, 0.2);
+  color: var(--success-color);
+  border: 1px solid var(--success-color);
+}
+
+.error {
+  background-color: rgba(244, 67, 54, 0.2);
+  color: var(--error-color);
+  border: 1px solid var(--error-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.8rem;
+    margin-top: 20px;
+  }
+  
+  .content-container {
+    padding: 20px;
+    width: 95%;
+  }
+  
+  .back-button {
+    right: 10px;
+    top: 10px;
+  }
+}

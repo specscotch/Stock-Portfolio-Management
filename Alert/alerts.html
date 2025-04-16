@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="alertApp">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="alerts.css">
+  <title>Stock Price Alert</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="alerts.js" defer></script>
+</head>
+<body ng-controller="AlertController">
+  <header>
+    <h1>Stock Alerts</h1>
+    <a href="Home.html" class="back-button">🏠 Home</a>
+  </header>
+
+  <div class="content-container">
+    <form name="alertForm" ng-submit="submitAlert()" novalidate>
+      <input type="text" ng-model="alert.symbol" placeholder="Stock Symbol (e.g., AAPL)" required />
+      <input type="number" step="0.01" ng-model="alert.targetPrice" placeholder="Target Price" required />
+      <input type="email" ng-model="alert.email" placeholder="Your Email" required />
+      <button type="submit" ng-disabled="alertForm.$invalid">Set Alert</button>
+    </form>
+
+    <div id="message" ng-if="message" ng-class="messageType">{{ message }}</div>
+  </div>
+</body>
+</html>

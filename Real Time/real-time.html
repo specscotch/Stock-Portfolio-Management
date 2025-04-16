@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="StockApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Stock Tracker</title>
+    <link rel="stylesheet" href="real-time.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+    <script src="real-time.js" defer></script>
+</head>
+<body ng-controller="StockTrackerController">
+    <header>
+        <h1>Real-Time Stock Tracker</h1>
+        <a href="Home.html" class="back-button" aria-label="Go to Home">🏠 Home</a>
+    </header>
+
+    <div class="container">
+        <input type="text" ng-model="stockSymbol" placeholder="Enter Stock Symbol(e.g. AAPL)">
+        <button ng-click="fetchStockData()">Get Stock Price</button>
+
+        <div class="result" ng-if="stockData.price">
+            <p><strong>Symbol:</strong> {{stockData.symbol}}</p>
+            <p><strong>Price:</strong> ${{stockData.price}}</p>
+            <p><strong>Time:</strong> {{stockData.time}}</p>
+        </div>
+
+        <div class="error" ng-if="errorMessage">
+            <p>{{errorMessage}}</p>
+        </div>
+    </div>
+</body>
+</html>

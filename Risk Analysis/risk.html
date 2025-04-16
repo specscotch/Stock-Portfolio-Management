@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stock Risk Analysis</title>
+  <link rel="stylesheet" href="risk.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="risk.js"></script>
+</head>
+<body ng-app="riskApp" ng-controller="RiskController">
+    <header>
+    <h1>Stock Risk Analysis</h1>
+  <a href="Home.html" class="back-button">🏠 Home</a>
+  </header>
+  <form ng-submit="fetchData()">
+    <label for="symbol">Enter Stock Symbol:</label>
+    <input type="text" id="symbol" ng-model="symbol" required>
+    <label for="benchmark">Enter Benchmark Index:</label>
+    <input type="text" id="benchmark" ng-model="benchmark" required>
+    <button type="submit">Get Risk Analysis</button>
+  </form>
+
+  <div ng-if="history.length">
+    <h2>Closing Prices (Last 30 Days)</h2>
+    <canvas id="priceChart" width="600" height="300"></canvas>
+
+    <h3>Volatility (Standard Deviation): {{ volatility | number:4 }}</h3>
+
+    
+  <div ng-if="errorMessage">
+    <p style="color: red">{{ errorMessage }}</p>
+  </div>
+</body>
+</html>

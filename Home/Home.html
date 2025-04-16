@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="StockApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Portfolio Management</title>
+    <link rel="stylesheet" href="home.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="app.js" defer></script>
+</head>
+<body>
+   
+    <div class="bg-container">
+        <img src="Firefly Secure Stock Exchange System using Web Services graphs 80807.jpg" alt="Stock market visualization" class="bg-image">
+    </div>
+    
+    <header>
+        <h1>Stock Portfolio Management</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="real-time.html" class="active">Real-Time Tracker</a></li>
+            <li><a href="portfolio.html">Portfolio Management</a></li>
+            <li><a href="alerts.html">Stock Alerts</a></li>
+            <li><a href="comparison.html">Stock Comparison</a></li>
+            <li><a href="news.html">Market News</a></li>
+            <li><a href="risk.html">Risk Analysis</a></li>
+            <li><a href="auth.html">Login / Signup</a></li>
+        </ul>
+        <div class="glow-line"></div>
+    </nav>
+    
+   
+    <div class="content-wrapper">
+        <div class="main-content">
+            <section class="intro">
+                <p>Welcome to the Stock Portfolio Management system! Track, manage, and analyze your stocks seamlessly with our powerful suite of investment tools.</p>
+                <a href="auth.html" class="cta-button">Start Managing Your Portfolio</a>
+            </section>
+
+            <div class="dashboard-preview">
+                <div class="card">
+                    <h3>Market Overview</h3>
+                    <div class="chart-container">
+                        <canvas id="marketChart"></canvas>
+                    </div>
+                    <div class="stock-metrics">
+                        <div class="metric">
+                            <div class="value positive">+1.2%</div>
+                            <div class="label">S&P 500</div>
+                        </div>
+                        <div class="metric">
+                            <div class="value negative">-0.4%</div>
+                            <div class="label">NASDAQ</div>
+                        </div>
+                        <div class="metric">
+                            <div class="value positive">+0.8%</div>
+                            <div class="label">DOW</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>Top Performers</h3>
+                    <div class="chart-container">
+                        <canvas id="performersChart"></canvas>
+                    </div>
+                    <div class="stock-metrics">
+                        <div class="metric">
+                            <div class="value positive">+3.5%</div>
+                            <div class="label">AAPL</div>
+                        </div>
+                        <div class="metric">
+                            <div class="value positive">+2.7%</div>
+                            <div class="label">MSFT</div>
+                        </div>
+                        <div class="metric">
+                            <div class="value positive">+2.1%</div>
+                            <div class="label">TSLA</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>Your Portfolio</h3>
+                    <div class="chart-container">
+                        <canvas id="portfolioChart"></canvas>
+                    </div>
+                    <div class="stock-metrics">
+                        <div class="metric">
+                            <div class="value">$24,680</div>
+                            <div class="label">Total Value</div>
+                        </div>
+                        <div class="metric">
+                            <div class="value positive">+$420</div>
+                            <div class="label">Today</div>
+                        </div>
+                        <div class="metric">
+                            <div class="value positive">+12.4%</div>
+                            <div class="label">All Time</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Market Overview Chart
+            const marketCtx = document.getElementById('marketChart').getContext('2d');
+            const marketChart = new Chart(marketCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Market Trend',
+                        data: [65, 59, 80, 81, 56, 72],
+                        fill: true,
+                        backgroundColor: 'rgba(0, 230, 204, 0.1)',
+                        borderColor: '#00E6CC',
+                        tension: 0.4,
+                        pointRadius: 0,
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false,
+                                drawBorder: false
+                            },
+                            ticks: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: false,
+                                drawBorder: false
+                            },
+                            ticks: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Top Performers Chart
+            const performersCtx = document.getElementById('performersChart').getContext('2d');
+            const performersChart = new Chart(performersCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['AAPL', 'MSFT', 'TSLA', 'AMZN', 'GOOGL', 'META'],
+                    datasets: [{
+                        label: 'Performance',
+                        data: [3.5, 2.7, 2.1, 1.8, 1.5, 1.2],
+                        backgroundColor: [
+                            'rgba(0, 230, 204, 0.7)',
+                            'rgba(0, 204, 230, 0.7)',
+                            'rgba(0, 153, 255, 0.7)',
+                            'rgba(102, 102, 255, 0.7)',
+                            'rgba(153, 51, 255, 0.7)',
+                            'rgba(204, 51, 204, 0.7)'
+                        ],
+                        borderWidth: 0,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false,
+                                drawBorder: false
+                            },
+                            ticks: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: false,
+                                drawBorder: false
+                            },
+                            ticks: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Portfolio Chart
+            const portfolioCtx = document.getElementById('portfolioChart').getContext('2d');
+            const portfolioChart = new Chart(portfolioCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Technology', 'Healthcare', 'Finance', 'Consumer', 'Energy'],
+                    datasets: [{
+                        label: 'Portfolio Allocation',
+                        data: [35, 20, 15, 20, 10],
+                        backgroundColor: [
+                            'rgba(0, 230, 204, 0.7)',
+                            'rgba(0, 102, 255, 0.7)',
+                            'rgba(153, 51, 255, 0.7)',
+                            'rgba(255, 102, 102, 0.7)',
+                            'rgba(255, 204, 0, 0.7)'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

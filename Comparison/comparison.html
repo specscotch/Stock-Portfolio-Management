@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="StockCompareApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Stock Comparison Tool</title>
+    <link rel="stylesheet" href="comparison.css">      
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="comparison.js" defer></script>
+</head>
+<body ng-controller="StockCompareController">
+    <header>
+        <h1>Stock Comparison</h1>
+        <a href="Home.html" class="back-button">🏠 Home</a>  
+    </header>
+    <input type="text" ng-model="symbol1" placeholder="Enter first stock symbol (e.g., AAPL)">
+    <input type="text" ng-model="symbol2" placeholder="Enter second stock symbol (e.g., MSFT)">
+    <button ng-click="compareStocks()">Compare</button>
+    <canvas id="comparisonChart" height="100"></canvas>
+</body>
+</html>
