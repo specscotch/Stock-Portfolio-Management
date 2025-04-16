@@ -1,3 +1,5 @@
+📊 Stock Portfolio Management
+
 Stock Portfolio Management is a comprehensive full-stack web application built to help users manage their stock investments efficiently. It provides a wide range of features including real-time stock tracking, portfolio management, risk analysis, price alerts via email, stock comparisons, and financial news aggregation. The application is designed with a user-friendly interface using AngularJS for the frontend and Node.js (without Express) for the backend. MySQL is used for storing user data, stock alerts, and portfolio information, while stock data is fetched using the Alpha Vantage API.
 
 The application allows users to register and log in to access their personalized dashboard where they can add, view, or delete stocks from their portfolio. Real-time stock prices are displayed alongside detailed statistics and graphical visualizations. Users can set price alerts for specific stocks, and the system automatically monitors those prices at regular intervals. When a target price is reached, an email notification is sent to the registered user using Nodemailer.
